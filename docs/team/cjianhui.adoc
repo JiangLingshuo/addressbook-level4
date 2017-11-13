@@ -45,6 +45,10 @@ track of their schedule through a calendar of some sort and Google Calendar is a
 
 include::../DeveloperGuide.adoc[tag=sort]
 
+include::../DeveloperGuide.adoc[tag=group]
+
+nclude::../DeveloperGuide.adoc[tag=schedule]
+
 #End of Extract#
 
 ---
@@ -53,5 +57,7 @@ include::../DeveloperGuide.adoc[tag=sort]
 
 === Other contributions
 
-== Project:
+* Wrote additional tests to increase coverage (Pull requests https://github.com/CS2103AUG2017-W09-B4/main/pull/49[#49])
+* 'Favourite' Feature: Modified setPerson to insert `Favourite` person(s) at the top and remove `Favourite` person(s) appropriately (Pull requests https://github.com/CS2103AUG2017-W09-B4/main/pull/71[#71])
+* Identified bugs during acceptance testing (Issues https://github.com/CS2103AUG2017-T16-B2/main/issues/102[#102])
 
