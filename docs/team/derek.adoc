@@ -90,7 +90,7 @@ which provides convenience.
 === Social Media Add & Display
 
 Many people have social media profiles now, this feature allows people to be even
-more interconnected. 
+more interconnected.
 
 ---
 
@@ -287,8 +287,7 @@ The application's state(s) that are stored on two stacks, which allow undo's and
 
 === Other contributions
 
-* Changed the GUI (components, color scheme, etc.)
-* Wrote additional tests
-* Removed default browser
-* Added social media (with cjianhui)
-* Added multi-delete
+* Changed the GUI (components, color scheme, etc.) (Pull request #48, #54, #59)
+* Wrote additional tests (Pull request #69 #70)
+* Removed default browser (Pull request #91)
+* Added multi-delete (Pull request #70)
