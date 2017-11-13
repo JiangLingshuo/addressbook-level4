@@ -73,6 +73,7 @@ As Bamboo is primarily a CLI-based application, most of your interaction with Ba
 === Viewing help : `help`
 Format: `help`
 
+// tag::add[]
 === Adding a person: `add`
 
 Adds a person to the address book +
@@ -80,15 +81,21 @@ Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 Alias: `a`
 
 [TIP]
-A person can have 0 or 1 phone number, email and address
+A person must have 1 name +
+A person can have 0 or 1 phone number, email and address +
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe`
-* `add n/John Doe p/71625387`
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe` +
+Add person `John Doe` with empty phone, email and address as `---`
+* `add n/John Doe p/71625387` +
+Add person `John Doe` with phone `71625387`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` +
+Add `John Doe` with all fields
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal` +
+Add `Betsy Crowe` and the following fields with a tag `Criminal`
+// end::add[]
 
 === Listing all persons : `list`
 
@@ -120,6 +127,7 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+// tag::find[]
 === Locating persons by name, address, email or phone number: `find` (Since V1.4)
 
 Finds persons whose names or name initials or address or phone number or email contain any of the given keywords. +
@@ -153,7 +161,7 @@ Returns any person with address containing `earth`
 Returns any person with email containing keyword `gmail`
 * `find t/friends` +
 Returns any person with tags containing keyword `friends`
-
+// end::find[]
 
 === Deleting person(s) : `delete`
 
