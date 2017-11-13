@@ -4,13 +4,11 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Bamboo
-Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 22000 lines of code.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/main/Procrastinatus.md[Functional code]] [https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/test/Procrastinatus.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/main/Procrastinatus.md[Functional code]] [https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/test/Procrastinatus.md[Test code]]
 
 === Enhancement Added: GUI
-
-==== External behavior
 
 ---
 #Start of Extract [from: User Guide]#
@@ -94,12 +92,9 @@ which provides convenience.
 Many people have social media profiles now, this feature allows people to be even
 more interconnected. 
 
-==== Implementation
-
 ---
-#Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc
+#Start of Extract [from: Developer Guide]#
 
 === Purpose
 
