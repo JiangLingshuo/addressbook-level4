@@ -47,7 +47,7 @@ include::../DeveloperGuide.adoc[tag=sort]
 
 include::../DeveloperGuide.adoc[tag=group]
 
-nclude::../DeveloperGuide.adoc[tag=schedule]
+include::../DeveloperGuide.adoc[tag=schedule]
 
 #End of Extract#
 
