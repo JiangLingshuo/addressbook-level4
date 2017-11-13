@@ -338,7 +338,6 @@ Alias: `ca`
 Examples:
 
 * `cadd p/2 i/xderek105243x@gmail.com`
-// end::calendar[]
 
 === Adding an event to a person's schedule : `eadd` (Since V1.5)
 Adds an event to a person's schedule. +
@@ -373,6 +372,7 @@ Examples:
 
 * `edelete p/1 e/1`
 * `ed p/2 e/4 5 6`
+// end::calendar[]
 
 // tag::profPicSystem[]
 === Setting the photo of a person: `ppset` (Since V1.4)
@@ -431,6 +431,50 @@ Sorts persons by name in ascending order. +
 Sorts persons by phone in descending order.
 
 // end::sort[]
+
+// tag::sadd[]
+=== Adding social media profiles : `sadd` (coming in V2.0)
+
+Adds social media profiles to a contact based on prefixes specified.
+Format: `sadd [fb/FacebookURL] [tw/TwitterURL] [in/InstagramURL] [gp/GooglePlusURL]` +
+
+****
+* Adds social media profiles with `PREFIX`-es `fb, tw, in, gp` to a person specified by `INDEX`.
+* At least one of the four prefixes is needed.
+****
+
+Examples:
+
+* `sadd p/1 fb/https://www.facebook.com/samplename123` +
+Adds a Facebook profile page to the person with `INDEX` 1. +
+* `sadd p/2 fb/https://www.facebook.com/samplename123 tw/https://www.twitter.com/samplename123
+ gp/https://plus.google.com/samplename123` +
+Adds a Facebook profile page, Twitter profile page
+ and Google Plus profile page to the person with `INDEX` 2. +
+
+// end::sadd[]
+
+// tag::sshow[]
+=== Showing social media profiles : `sshow` (coming in V2.0)
+
+Shows social media profiles of a contact based on prefixes specified.
+Format: `sshow INDEX [fb tw in gp]` +
+
+****
+* Shows social media profiles with options `fb, tw, in, gp` of the person specified by `INDEX`.
+* Person `INDEX` is mandatory.
+* At least one of the four social media prefixes are needed.
+****
+
+Examples:
+
+* `sshow 1 fb` +
+Shows the Facebook profile page of the person with `INDEX` 1. +
+* `sshow 2 fb tw gp` +
+Shows the Facebook, Twitter and Google Plus profile page
+of the person with `INDEX` 2. +
+
+// end::sshow[]
 
 === Listing entered commands : `history`
 

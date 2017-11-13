@@ -4,18 +4,14 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Bamboo
-Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
+Bamboo is a desktop address book application developed as part of a Software Engineering module requirement. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 22000 lines of code.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/main/Procrastinatus.md[Functional code]] [https://github.com/CS2103AUG2017-W09-B4/main/blob/collate/collated/test/Procrastinatus.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/main/Procrastinatus.md[Functional code]] [https://github.com/CS2103AUG2017-W09-B4/main/blob/master/collated/test/Procrastinatus.md[Test code]]
 
 === Enhancement Added: GUI
 
-==== External behavior
-
 ---
 #Start of Extract [from: User Guide]#
-
-include::../UserGuide.adoc[tag=undoredo]
 
 === Deleting person(s) : `delete`
 
@@ -38,11 +34,50 @@ Deletes the 2nd, 3rd and 4th persons in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
+#End of Extract#
+
+#Start of Extract [from: User Guide]#
+
+=== Adding social media profiles : `sadd` (coming in V2.0)
+
+Adds social media profiles to a contact based on prefixes specified.
+Format: `sadd [fb/FacebookURL] [tw/TwitterURL] [in/InstagramURL] [gp/GooglePlusURL]` +
+
+****
+* Adds social media profiles with `PREFIX`-es `fb, tw, in, gp` to a person specified by `INDEX`.
+* At least one of the four prefixes is needed.
+****
+
+Examples:
+
+* `sadd p/1 fb/https://www.facebook.com/samplename123` +
+Adds a Facebook profile page to the person with `INDEX` 1. +
+* `sadd p/2 fb/https://www.facebook.com/samplename123 tw/https://www.twitter.com/samplename123
+ gp/https://plus.google.com/samplename123` +
+Adds a Facebook profile page, Twitter profile page
+ and Google Plus profile page to the person with `INDEX` 2. +
+
+=== Showing social media profiles : `sshow` (coming in V2.0)
+
+Shows social media profiles of a contact based on prefixes specified.
+Format: `sshow INDEX [fb tw in gp]` +
+
+****
+* Shows social media profiles with options `fb, tw, in, gp` of the person specified by `INDEX`.
+* Person `INDEX` is mandatory.
+* At least one of the four social media prefixes are needed.
+****
+
+Examples:
+
+* `sshow 1 fb` +
+Shows the Facebook profile page of the person with `INDEX` 1. +
+* `sshow 2 fb tw gp` +
+Shows the Facebook, Twitter and Google Plus profile page
+of the person with `INDEX` 2. +
 
 
 #End of Extract#
-
----
 
 ==== Justification
 
@@ -52,12 +87,14 @@ Multi-delete allows users to delete single, as well as multiple persons in one c
 This prevents the need for executing multiple delete commands to delete multiple persons,
 which provides convenience.
 
-==== Implementation
+=== Social Media Add & Display
+
+Many people have social media profiles now, this feature allows people to be even
+more interconnected.
 
 ---
-#Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=undoredo]
+#Start of Extract [from: Developer Guide]#
 
 === Purpose
 
@@ -66,10 +103,18 @@ It assumes that you have an intermediate level of understanding of Java.
 It describes how to start developing Bamboo with the Intellij IDE,
 as well as the structure of various components in the Bamboo application.
 
+#End of Extract#
+
+#Start of Extract [from: Developer Guide]#
+
 == Setting up
 
 This section provides you with the steps required to set up everything before beginning development
 on Bamboo.
+
+#End of Extract#
+
+#Start of Extract [from: Developer Guide]#
 
 === UI component
 
@@ -97,6 +142,10 @@ The `UI` component does the following things:
 * Binds itself to some data in the `Model` so that the UI can automatically update when data in the `Model` component changes.
 * Responds to events raised from various parts of the application (through event subscribers such as `handlePersonPanelSelectionChangedEvent` in link:{repoURL}/src/main/java/seedu/address/ui/ContactDetailsPanel.java[`ContactDetailsPanel.java`]) and updates the UI accordingly.
 * Animates certain parts of the application, mostly in the contact details panel.
+
+#End of Extract#
+
+#Start of Extract [from: Developer Guide]#
 
 === User Interface (UI)
 
@@ -138,12 +187,20 @@ UI parts (nodes) in link:{repoURL}/src/main/java/seedu/address/ui/ContactDetails
 
 `ParallelTransition` is used to play multiple `Transition` objects simultaneously. In this case, it plays `FadeTransition` and `TranslateTransition` together, resulting in what you see - text and images fading in from nothing.
 
+#End of Extract#
+
+#Start of Extract [from: Developer Guide]#
+
 === Troubleshooting Testing
 
 **Problem: `HelpWindowTest` fails with a `BoundsLocatorException`.**
 
 * Reason: The window size of the test application is too small.
 * Solution: Open `src/test/java/seedu/address/TestApp.java` and find the `initPrefs` method. Find `new GuiSettings` inside the method and enlarge the window size accordingly.
+
+#End of Extract#
+
+#Start of Extract [from: Developer Guide]#
 
 == Glossary
 
@@ -230,8 +287,7 @@ The application's state(s) that are stored on two stacks, which allow undo's and
 
 === Other contributions
 
-* Changed the GUI (components, color scheme, etc.)
-* Wrote additional tests
-* Removed default browser
-* Added social media (with cjianhui)
-* Added multi-delete
+* Changed the GUI (components, color scheme, etc.) (Pull request #48, #54, #59)
+* Wrote additional tests (Pull request #69 #70)
+* Removed default browser (Pull request #91)
+* Added multi-delete (Pull request #70)
