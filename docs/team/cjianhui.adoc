@@ -15,12 +15,6 @@ Bamboo is a command-line interface (CLI) based address book application. It is a
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=sort]
-
-include::../UserGuide.adoc[tag=group]
-
-include::../UserGuide.adoc[tag=calendar]
-
 // tag::group[]
 === Creating a group: `gcreate` (Since V1.2)
 
@@ -184,12 +178,6 @@ track of their schedule through a calendar of some sort and Google Calendar is a
 
 ---
 #Start of Extract [from: Developer Guide]#
-
-include::../DeveloperGuide.adoc[tag=sort]
-
-include::../DeveloperGuide.adoc[tag=group]
-
-include::../DeveloperGuide.adoc[tag=schedule]
 
 // tag::sort[]
 === Sorting
