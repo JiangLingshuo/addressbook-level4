@@ -18,9 +18,65 @@ and has about 22 kLoC.
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc[tag=find]
+// tag::add[]
+=== Adding a person: `add`
 
-include::../UserGuide.adoc[tag=add]
+Adds a person to the address book +
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+Alias: `a`
+
+[TIP]
+A person must have 1 name +
+A person can have 0 or 1 phone number, email and address +
+A person can have any number of tags (including 0)
+
+Examples:
+
+* `add n/John Doe` +
+Add person `John Doe` with empty phone, email and address as `---`
+* `add n/John Doe p/71625387` +
+Add person `John Doe` with phone `71625387`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` +
+Add `John Doe` with all fields
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal` +
+Add `Betsy Crowe` and the following fields with a tag `Criminal`
+// end::add[]
+
+// tag::find[]
+=== Locating persons by name, address, email or phone number: `find` (Since V1.4)
+
+Finds persons whose names or name initials or address or phone number or email contain any of the given keywords. +
+Format: `find [n/] [p/] [e/] [a/] [t/] KEYWORD [MORE_KEYWORDS]` +
+Alias: `f`
+
+****
+* The search is case insensitive. e.g `hans` will match `Hans`
+* The search can be done with initials. e.g. `AY` will match `Alex Yeoh`
+* The search can be done with partial strings. e.g. `Ber` will match `Bernice Yu`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Persons can be searched by name, phone number, email or address.
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+****
+
+Examples:
+
+* `find John` +
+Returns `john` and `John Doe`
+* `find Betsy Tim John` +
+Returns any person having names `Betsy`, `Tim`, or `John`
+* `find AY` +
+Returns `Alex Yeoh` whose name initial is `AY`
+* `find Ber` +
+Returns `Bernice Yu` whose name contains the partial string `Ber`
+* `find p/83537423` +
+Returns any person with phone number `83537423`
+* `find a/earth` +
+Returns any person with address containing `earth`
+* `find e/gmail` +
+Returns any person with email containing keyword `gmail`
+* `find t/friends` +
+Returns any person with tags containing keyword `friends`
+// end::find[]
 
 #End of Extract#
 
@@ -41,9 +97,60 @@ Especially for students and business people, adding a person with missing field 
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc[tag=find]
+// tag::find[]
+=== Finding
+The finding mechanism is facilitated by `FindCommand`, which extends `Command`.
+It supports finding a list of specific persons by entering any substring of a person's contact field.
+This includes a person's name, phone number, email, address or even their tags with `PREFIX` specified. +
 
-include::../DeveloperGuide.adoc[tag=add]
+The sequence diagram below details the flow the execution of a `find p/1` command.
+
+image::FindSequenceDiagram.png[width="800"]
+
+Finding a person is facilitated using `PartialSearchUtil`, which examines whether a base list contains any word whose
+substring appears in the target list. It maps each attribute to the `find` parser and returns a list of persons
+matching find condition.
+
+==== Design Considerations
+**Aspect:** Implementation of `find` +
+**Alternative 1 (current choice):** Find person by a list of substrings or name initials +
+**Pros:** Easy and neat for implementation +
+A lot of real user case shows finding by substring and name initials are prevailing among users +
+**Cons:** Unable to handle typo mistakes and order mistakes +
+**Alternative 2:** Perform fuzzy search by editing distance +
+**Pros:** Able to fix typos and order mistakes +
+**Cons:** Slow in running and hard to implement +
+Partial string will have a big editing distance.
+
+// end::find[]
+
+// tag::add[]
+=== Adding
+The finding mechanism is facilitated by `AddCommand`, which extends `Command`.
+It supports adding a person into address book with name, and alternative fields phone, email, address and tag
+Missing field with be displayed as `---` +
+
+The sequence diagram below details the flow the execution of a `add n/Lingshuo` command.
+
+image::AddSequenceDiagram.png[width="800"]
+
+This functionality is supported by requiring only name in argMultimap. +
+Other empty field among email, address and phone number will be marked with name of `---`
+
+==== Design Considerations
+**Aspect:** Implementation of `add` +
+**Alternative 1 (current choice):** once detect a missing field in arguMultimap for phone, address or email,
+create the corresponding field with a false name of `---` +
+**Pros:** Easy and neat for implementation +
+Low coupling with other parts of the program +
+**Cons:** Not good for future detection and correction of missing fields +
+**Alternative 2:** replace required field phone, email and address in Person model with Optional +
+**Pros:** Standard implementation and implement the missing of the fields properly +
+**Cons:** SHigh coupling with other classes +
+Not user friendly on UI.
+
+// end::add[]
+
 
 #End of Extract#
 
