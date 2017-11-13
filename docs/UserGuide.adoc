@@ -322,7 +322,6 @@ Alias: `ca`
 Examples:
 
 * `cadd p/2 i/xderek105243x@gmail.com`
-// end::calendar[]
 
 === Adding an event to a person's schedule : `eadd` (Since V1.5)
 Adds an event to a person's schedule. +
@@ -357,6 +356,7 @@ Examples:
 
 * `edelete p/1 e/1`
 * `ed p/2 e/4 5 6`
+// end::calendar[]
 
 // tag::profPicSystem[]
 === Setting the photo of a person: `ppset` (Since V1.4)
